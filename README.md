@@ -1,28 +1,26 @@
-# GOAT Finder
+# Milestone Tracker
 
-## Letting bias decide the Greatest NBA Player of All Time
+## Document milestones and progress towards a goal of mastery
 
-This application aims to allow users to have complete control over what statistics matter most
-when deciding who the best basketball players are. Fans of basketball are constantly arguing
-over the details that are relevant when deciding the best. Some may idealize different eras of
-the sport while others discredit that very same era. Some value longevity over peak. Many
-will require a specific balance of statistics when determining their chosen player. 
+This app aims to provide a way to track one's progress in their hobbies and skills 
+such as music, sports, and anything anyone could come up with. Potential information that
+could be recorded include:
 
-Knowing the subjectivity of picking the best player, the application will take user inputs on a variety
-of options to determine value between:
+- number of hours spent so far practicing skill
+- milestones and when they happened
+- goals set in the future to reach
 
-- Points per Game vs Total Points
-- Points vs Assist
-- Steals vs Blocks
+then to display:
 
-or to include:
+- rate and trends in time spent practicing
+- how often milestones have been set
+- current total hours of all skills
 
-- Advanced Statistics
-- Position
+Anyone with skills they want to start working on can use the **Milestone Tracker**
+to track their own progress as well as show to others how fast <sup><sub> or slow </sub></sup>
+their advancement has been.
 
-And many more.
-
-The internal logic of the final equations used to rank players will involve the use of 
-a given statistic's **standard deviation** in comparison to the league averages of the time
-frame inputted by the user. Stat valuation given by the user will be applied as **coefficients**
-in the final equation.
+As someone with many dropped and ongoing hobbies, a tracker like this allows easy
+re-entry into old ones and further motivation for current skills. Instead of a messy
+notes app on my phone, an easy to use organizational program will make entries and 
+review much appealing.
