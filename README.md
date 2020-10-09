@@ -24,3 +24,13 @@ As someone with many dropped and ongoing hobbies, a tracker like this allows eas
 re-entry into old ones and further motivation for current skills. Instead of a messy
 notes app on my phone, an easy to use organizational program will make entries and 
 review much appealing.
+
+##User Stories
+
+- As a user, I want to be able to add a hobby/skill to my list of all hobbies
+- As a user, I want to be able to add hours to a current total for each hobby
+- As a user, I want to be able to add milestones or notes to a hobby and 
+store the date and number of hours done at that point
+- As a user, I want to be able to add goals to times in the future
+- As a user, I want to be able to rearrange the order of hobbies in the list
+- As a user, I want to be able to visualize the data within each hobby as a plot over time or as a log
