@@ -27,10 +27,9 @@ review much appealing.
 
 ##User Stories
 
-- As a user, I want to be able to add a hobby/skill to my list of all hobbies
-- As a user, I want to be able to add hours to a current total for each hobby
-- As a user, I want to be able to add milestones or notes to a hobby and 
-store the date and number of hours done at that point
-- As a user, I want to be able to add goals to times in the future
+- As a user, I want to be able to add a hobby to a list of hobbies
+- As a user, I want to be able to add a milestone to a hobby and store it with the date and total hours in the hobby
+- As a user, I want to be able to goals with future times in a hobby
 - As a user, I want to be able to rearrange the order of hobbies in the list
-- As a user, I want to be able to visualize the data within each hobby as a plot over time or as a log
+- As a user, I want to be able to visualize trends of hours in a hobby as a plot
+- As a user, I want to be able to see a log of milestones in a hobby
