@@ -25,7 +25,7 @@ re-entry into old ones and further motivation for current skills. Instead of a m
 notes app on my phone, an easy to use organizational program will make entries and 
 review much appealing.
 
-##User Stories
+## User Stories
 
 - As a user, I want to be able to add a hobby to a list of hobbies
 - As a user, I want to be able to add a milestone to a hobby and store it with the date and total hours in the hobby
