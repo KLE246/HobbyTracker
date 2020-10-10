@@ -36,12 +36,14 @@ public class HobbyTracker {
     }
 
     private void processCommand(String command) {
-        if (command.equals("add")) {
+        if (command.equals("new")) {
             addHobby();
         } else if (command.equals("all")) {
             seeAllHobbiesAndHours();
         } else if (command.equals("add")) {
             addProgress();
+        } else {
+            System.out.println("Try again");
         }
     }
 
@@ -69,7 +71,7 @@ public class HobbyTracker {
     public void prompts() {
         System.out.println("To add a hobby - \"new\"");
         System.out.println("To see all current hobbies and their hours - \"all\"");
-        System.out.println("To see all current hobbies and their hours - \"add\"");
+        System.out.println("To add hours to a hobby - \"add\"");
     }
 
     // REQUIRES:
@@ -93,18 +95,26 @@ public class HobbyTracker {
         System.out.println("Which hobby have you progressed in?");
         Scanner answer = new Scanner(System.in);
         String name = answer.nextLine();
+        int index = hobbyList.getByName(name);
+
+        while (index == -1) {
+            System.out.println("That is not a hobby you are working on, try again");
+            answer = new Scanner(System.in);
+            name = answer.nextLine();
+            index = hobbyList.getByName(name);
+        }
 
         System.out.println("How many hours have you progressed?");
         Scanner timeGiven = new Scanner(System.in);
         String timeStr = answer.nextLine();
         int time = Integer.parseInt(timeStr);
 
-        int index = hobbyList.getByName(name);
         Hobby hobby = hobbyList.getByIndex(index);
         hobby.addTime(time);
 
         LinkedList<DatedHour> progress = hobby.progressList;
-        System.out.println(progress.get(0) + " has been added to progress");
+        DatedHour lastEntry = progress.get(0);
+        System.out.println(lastEntry.getDatedHourString() + " has been added to " + hobby.getName() + " progress");
     }
 
 

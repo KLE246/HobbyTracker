@@ -32,13 +32,13 @@ public class HobbyList {
 
     // REQUIRES:
     // MODIFIES: this
-    // EFFECTS: gets hobby at given index
+    // EFFECTS: gets index of given hobby
     public int getByName(String toFind) {
-        int index = 0;
+        int index = -1;
         for (int i = 0; i < hobbyList.size(); i++) {
             Hobby hobby = hobbyList.get(i);
             String name = hobby.getName();
-            if (name == toFind) {
+            if (name.equals(toFind)) {
                 index = i;
             }
         }
