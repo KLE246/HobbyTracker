@@ -15,6 +15,6 @@ public class DatedHour {
 
     public String getDatedHourString() {
         Date calender = Calendar.getInstance().getTime();
-        return Integer.toString(hour) + " hours of progress as of " + date.format(calender);
+        return hour + " hours at " + date.format(calender);
     }
 }
