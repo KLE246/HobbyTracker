@@ -9,7 +9,7 @@ public abstract class Event {
 
     protected Event(String title, int totalProgress) {
         this.title = title;
-        savedTime = new DatedHour(new SimpleDateFormat("dd/MM/yy HH:mm:ss"), totalProgress);
+        savedTime = new DatedHour(totalProgress);
     }
 
 }

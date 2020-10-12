@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +14,7 @@ public class Milestone {
 
     public Milestone(String title, int totalProgress) {
         this.title = title;
-        savedTime = new DatedHour(new SimpleDateFormat("dd/MM/yy HH:mm:ss"), totalProgress);
+        savedTime = new DatedHour(totalProgress);
     }
 
     // REQUIRES:
@@ -23,9 +24,11 @@ public class Milestone {
         this.description = description;
     }
 
-    public String getDatedHourString() {
-        Date calender = Calendar.getInstance().getTime();
-        return savedTime.date.format(calender);
-    }
+//    public String getDatedHourString() {
+//        Date calender = Calendar.getInstance().getTime();
+//        return savedTime.date.format(calender);
+//    }
+
 }
+
 

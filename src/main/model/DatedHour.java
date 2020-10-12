@@ -1,20 +1,26 @@
 package model;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DatedHour {
-    DateFormat date;
+    Date date;
     int hour;
 
-    public DatedHour(DateFormat date, int hour) {
-        this.date = date;
+    public DatedHour(int hour) {
+        this.date = Calendar.getInstance().getTime();;
         this.hour = hour;
     }
 
-    public String getDatedHourString() {
-        Date calender = Calendar.getInstance().getTime();
-        return hour + " hours at " + date.format(calender);
+    public String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String strDate = dateFormat.format(date);
+        return strDate;
+    }
+
+    public int getHour() {
+        return hour;
     }
 }

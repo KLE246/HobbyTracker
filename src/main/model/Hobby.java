@@ -24,7 +24,7 @@ public class Hobby {
     // EFFECTS: adds the time towards the total hours in the hobby
     public void addTime(int time) {
         totalProgress = totalProgress + time;
-        DatedHour datedHour = new DatedHour(new SimpleDateFormat("dd/MM/yy HH:mm:ss"), totalProgress);
+        DatedHour datedHour = new DatedHour(totalProgress);
         progressList.add(datedHour);
     }
 
