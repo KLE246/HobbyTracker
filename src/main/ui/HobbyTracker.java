@@ -199,6 +199,6 @@ public class HobbyTracker {
     public int indexFromInput() {
         Scanner answer = new Scanner(System.in);
         String name = answer.nextLine();
-        return hobbyList.getByName(name.substring(0, 1).toUpperCase() + name.substring(1));
+        return hobbyList.getByName(name);
     }
 }

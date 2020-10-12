@@ -23,17 +23,19 @@ public class HobbyList {
         return hobbyList.size();
     }
 
-    // REQUIRES: hobbyList is not empty
-    // MODIFIES: this
-    // EFFECTS: gets hobby at given index
+    // REQUIRES: i is not an index greater than what the list contains, can't be
+    // called on an empty hobbyList
+    // MODIFIES:
+    // EFFECTS: returns the hobby at given index
     public Hobby getByIndex(int i) {
         return hobbyList.get(i);
     }
 
     // REQUIRES:
-    // MODIFIES: this
+    // MODIFIES:
     // EFFECTS: gets index of given hobby
     public int getByName(String toFind) {
+        toFind = toFind.substring(0, 1).toUpperCase() + toFind.substring(1);
         int index = -1;
         for (int i = 0; i < hobbyList.size(); i++) {
             Hobby hobby = hobbyList.get(i);
