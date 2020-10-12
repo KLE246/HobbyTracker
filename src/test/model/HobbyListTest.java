@@ -34,4 +34,9 @@ class HobbyListTest {
         assertEquals(0, hobbyList.getByName("a1"));
         assertEquals(1, hobbyList.getByName("b2"));
     }
+
+    @Test
+    public void testGiveAllHobbies() {
+
+    }
 }

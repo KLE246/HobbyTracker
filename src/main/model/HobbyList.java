@@ -44,4 +44,15 @@ public class HobbyList {
         }
         return index;
     }
+
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS: returns list of all hobby names
+    public LinkedList<String> giveAllHobbies() {
+        LinkedList<String> names = new LinkedList();
+        for (Hobby hobby : hobbyList) {
+            names.add(hobby.getName());
+        }
+        return names;
+    }
 }

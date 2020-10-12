@@ -95,7 +95,7 @@ public class HobbyTracker {
 
     // REQUIRES:
     // MODIFIES: this
-    // EFFECTS: adds a milestone to remember and display recent five milestones
+    // EFFECTS: adds a milestone to remember and display recent milestones
     private void addMilestone() {
         Hobby hobby = selectHobby("addMs");
         System.out.println("What big milestone just happened?");
@@ -105,6 +105,7 @@ public class HobbyTracker {
         System.out.println("Add some details to this milestone");
         Scanner description = new Scanner(System.in);
         String milestoneDescription = description.nextLine();
+
         Milestone milestone = new Milestone(milestoneTitle);
         milestone.setTime(hobby.totalProgress);
         milestone.setDescription(milestoneDescription);
@@ -121,10 +122,8 @@ public class HobbyTracker {
     // EFFECTS: display a log of all milestones from selected hobby
     public void getMilestoneLog() {
         Hobby hobby = selectHobby("msLog");
-        for (Milestone milestone : hobby.milestoneList) {
-            DatedHour datedHour = milestone.savedTime;
-            System.out.println(milestone.title + " \n submitted " + datedHour.getDate()
-                    + "\n Description: \n" + milestone.description + "\n");
+        for (String logEntry : hobby.getMilestoneLog()) {
+            System.out.println(logEntry);
         }
     }
 
@@ -183,16 +182,23 @@ public class HobbyTracker {
         } else if (type.equals("addProgress")) {
             phrase = "Which hobby have you progressed in?";
         }
+        for (String name : hobbyList.giveAllHobbies()) {
+            System.out.println(name);
+        }
         System.out.println(phrase);
-        Scanner answer = new Scanner(System.in);
-        String name = answer.nextLine();
-        int index = hobbyList.getByName(name);
-
+        int index = -1;
         while (index == -1) {
-            System.out.println("That is not a hobby you are working on, try again");
-            answer = new Scanner(System.in);
-            index = hobbyList.getByName(answer.nextLine());
+            index = indexFromInput();
+            if (index == -1) {
+                System.out.println("That is not a hobby you are working on, try again");
+            }
         }
         return hobbyList.getByIndex(index);
+    }
+
+    public int indexFromInput() {
+        Scanner answer = new Scanner(System.in);
+        String name = answer.nextLine();
+        return hobbyList.getByName(name.substring(0, 1).toUpperCase() + name.substring(1));
     }
 }
