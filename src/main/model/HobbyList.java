@@ -23,7 +23,7 @@ public class HobbyList {
         return hobbyList.size();
     }
 
-    // REQUIRES:
+    // REQUIRES: hobbyList is not empty
     // MODIFIES: this
     // EFFECTS: gets hobby at given index
     public Hobby getByIndex(int i) {

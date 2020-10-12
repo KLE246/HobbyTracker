@@ -15,7 +15,7 @@ public class DatedHour {
     }
 
     public String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
         String strDate = dateFormat.format(date);
         return strDate;
     }

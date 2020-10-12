@@ -8,27 +8,26 @@ import java.util.Date;
 public class Milestone {
 
     public String title;
-    //protected String notes;
     public DatedHour savedTime;
     public String description;
 
-    public Milestone(String title, int totalProgress) {
+    public Milestone(String title) {
         this.title = title;
+    }
+
+    // REQUIRES:
+    // MODIFIES: this
+    // EFFECTS: adds the time to be saved for this milestone
+    public void setTime(int totalProgress) {
         savedTime = new DatedHour(totalProgress);
     }
 
     // REQUIRES:
     // MODIFIES: this
-    // EFFECTS: adds given description to the Milestone
-    public void describeMilestone(String description) {
+    // EFFECTS: adds a description to the milestone
+    public void setDescription(String description) {
         this.description = description;
     }
-
-//    public String getDatedHourString() {
-//        Date calender = Calendar.getInstance().getTime();
-//        return savedTime.date.format(calender);
-//    }
-
 }
 
 
