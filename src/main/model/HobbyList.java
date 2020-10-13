@@ -23,8 +23,8 @@ public class HobbyList {
         return hobbyList.size();
     }
 
-    // REQUIRES: i is not an index greater than what the list contains, can't be
-    // called on an empty hobbyList
+    // REQUIRES: i is not an index greater than what the list contains,
+    //           can't be called on an empty hobbyList
     // MODIFIES:
     // EFFECTS: returns the hobby at given index
     public Hobby getByIndex(int i) {
@@ -33,7 +33,7 @@ public class HobbyList {
 
     // REQUIRES:
     // MODIFIES:
-    // EFFECTS: gets index of given hobby
+    // EFFECTS: gets index of given hobby, returns -1 if can't be found
     public int getByName(String toFind) {
         toFind = toFind.substring(0, 1).toUpperCase() + toFind.substring(1);
         int index = -1;
@@ -51,7 +51,7 @@ public class HobbyList {
     // MODIFIES:
     // EFFECTS: returns list of all hobby names
     public LinkedList<String> giveAllHobbies() {
-        LinkedList<String> names = new LinkedList();
+        LinkedList<String> names = new LinkedList<>();
         for (Hobby hobby : hobbyList) {
             names.add(hobby.getName());
         }

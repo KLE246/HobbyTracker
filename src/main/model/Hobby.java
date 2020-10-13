@@ -18,6 +18,7 @@ public class Hobby {
     // REQUIRES: a positive time
     // MODIFIES: this
     // EFFECTS: adds the time towards the total hours in the hobby
+    //          and adds an entry into progressList
     public void addTime(int time) {
         totalProgress = totalProgress + time;
         DatedHour datedHour = new DatedHour(totalProgress);
@@ -40,9 +41,9 @@ public class Hobby {
 
     // REQUIRES:
     // MODIFIES:
-    // EFFECTS: returns the log in an easily read format
+    // EFFECTS: returns the progress log in an easily read format
     public LinkedList<String> getLog() {
-        LinkedList<String> log = new LinkedList();
+        LinkedList<String> log = new LinkedList<>();
         for (DatedHour datedHour : progressList) {
             log.add(datedHour.getHour() + " hours as of " + datedHour.getDate());
         }
@@ -51,9 +52,9 @@ public class Hobby {
 
     // REQUIRES:
     // MODIFIES:
-    // EFFECTS: returns the log in an easily read format
+    // EFFECTS: returns the milestone log in an easily read format
     public LinkedList<String> getMilestoneLog() {
-        LinkedList<String> log = new LinkedList();
+        LinkedList<String> log = new LinkedList<>();
         for (Milestone milestone : milestoneList) {
             DatedHour datedHour = milestone.savedTime;
             log.add(milestone.title + " \n submitted " + datedHour.getDate()
