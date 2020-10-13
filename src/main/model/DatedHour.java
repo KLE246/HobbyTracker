@@ -7,9 +7,8 @@ import java.util.Date;
 
 // Used https://www.javatpoint.com/java-date-to-string for information for this class
 public class DatedHour {
-    Date date;
-    int hour;
-    String datePattern = "yyyy-MM-dd hh:mm";
+    public Date date;
+    public int hour;
 
     // REQUIRES:
     // MODIFIES:
@@ -23,6 +22,7 @@ public class DatedHour {
     // MODIFIES:
     // EFFECTS: returns the date in a specified format
     public String getDate() {
+        String datePattern = "yyyy-MM-dd hh:mm";
         DateFormat dateFormat = new SimpleDateFormat(datePattern);
         return dateFormat.format(date);
     }
