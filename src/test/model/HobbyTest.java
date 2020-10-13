@@ -83,12 +83,8 @@ class HobbyTest {
         Milestone milestone = hobby.milestoneList.get(3);
         String logEntry = log.get(3);
         DatedHour datedHour = milestone.savedTime;
-        String expected = milestone.title + " \n submitted " + datedHour.getDate()
-                + "\n Description: \n" + milestone.description + "\n";
+        String expected = milestone.title + " \nsubmitted " + datedHour.getDate() + " after " + datedHour.getHour()
+                + " hours of progress \nDescription:\n" + milestone.description + "\n";
         assertEquals(expected, logEntry);
     }
-
-
-
-
 }
