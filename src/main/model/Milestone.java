@@ -15,7 +15,7 @@ public class Milestone {
         this.title = title;
     }
 
-    // REQUIRES:
+    // REQUIRES: savedTime has not yet been set
     // MODIFIES: this
     // EFFECTS: adds the time to be saved for this milestone
     public void setTime(int totalProgress) {

@@ -25,6 +25,13 @@ public class Hobby {
     }
 
     // REQUIRES:
+    // MODIFIES: this
+    // EFFECTS: adds the milestone to the milestone log
+    public void addMilestone(Milestone milestone) {
+        milestoneList.add(milestone);
+    }
+
+    // REQUIRES:
     // MODIFIES:
     // EFFECTS: returns the name of the hobby
     public String getName() {

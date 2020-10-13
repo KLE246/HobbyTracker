@@ -111,7 +111,8 @@ public class HobbyTracker {
         milestone.setDescription(milestoneDescription);
 
         LinkedList<Milestone> milestones = hobby.milestoneList;
-        milestones.add(milestone);
+        hobby.addMilestone(milestone);
+
         DatedHour lastEntry = milestones.get(milestones.size() - 1).savedTime;
         System.out.println("The milestone \"" + milestoneTitle + "\"" + " has been added to " + hobby.getName()
                 + " log at " + lastEntry.getHour() + " hours on " + lastEntry.getDate());
