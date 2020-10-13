@@ -7,12 +7,12 @@ such as music, sports, and anything anyone could come up with. Potential informa
 could be recorded include:
 
 - number of hours spent so far practicing skill
+- progression on a given date
 - milestones and when they happened
-- goals set in the future to reach
 
 then to display:
 
-- rate and trends in time spent practicing
+- a log of all dates that progression has been made
 - how often milestones have been set
 - current total hours of all skills
 
@@ -23,7 +23,7 @@ their advancement has been.
 As someone with many dropped and ongoing hobbies, a tracker like this allows easy
 re-entry into old ones and further motivation for current skills. Instead of a messy
 notes app on my phone, an easy to use organizational program will make entries and 
-review much appealing.
+review much  more appealing.
 
 ## User Stories
 

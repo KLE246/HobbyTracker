@@ -1,5 +1,8 @@
 package model;
 
+// A milestone represents a moment during a hobby progression worth saving to look back on
+// It has a title and a savedTime that is set. A final area is left for a description.
+
 public class Milestone {
 
     public String title;

@@ -6,6 +6,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 // Used https://www.javatpoint.com/java-date-to-string for information for this class
+// Class contains an hour value that will be used to mark the current hour total in a hobby
+// any time a DatedHour is made, the instance it is called and the current hobby progress is saved
+
 public class DatedHour {
     public Date date;
     public int hour;

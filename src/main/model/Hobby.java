@@ -2,6 +2,9 @@ package model;
 
 import java.util.LinkedList;
 
+// Creates a hobby with a name, and initializes the three fields of information
+// totalProgress is initially 0 and both progress and milestone lists are empty
+
 public class Hobby {
     public String name;
     public int totalProgress;
@@ -57,8 +60,8 @@ public class Hobby {
         LinkedList<String> log = new LinkedList<>();
         for (Milestone milestone : milestoneList) {
             DatedHour datedHour = milestone.savedTime;
-            log.add(milestone.title + " \n submitted " + datedHour.getDate()
-                    + "\n Description: \n" + milestone.description + "\n");
+            log.add(milestone.title + " \nsubmitted " + datedHour.getDate() + " after " + datedHour.getHour()
+                    + " hours of progress \nDescription:\n" + milestone.description + "\n");
         }
         return log;
     }

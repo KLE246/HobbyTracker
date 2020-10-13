@@ -2,6 +2,9 @@ package model;
 
 import java.util.LinkedList;
 
+// The hobbyList is what the program looks through at the first level
+// Hobbies are added to it and can be searched for by index or Hobby name
+
 public class HobbyList {
     public LinkedList<Hobby> hobbyList;
 
