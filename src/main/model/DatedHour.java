@@ -5,20 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-// Used https://www.javatpoint.com/java-date-to-string for information for this class
 // Class contains an hour value that will be used to mark the current hour total in a hobby
 // any time a DatedHour is made, the instance it is called and the current hobby progress is saved
-
 public class DatedHour {
-    public Date date;
-    public int hour;
+    private Date date;
+    private int progressHour;
 
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: creates a DateHour with the date and time of when constructor was called
-    public DatedHour(int hour) {
+    public DatedHour(int progressHour) {
         this.date = Calendar.getInstance().getTime();
-        this.hour = hour;
+        this.progressHour = progressHour;
     }
 
     // REQUIRES:
@@ -33,7 +31,7 @@ public class DatedHour {
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: returns hour
-    public int getHour() {
-        return hour;
+    public int getProgressHour() {
+        return progressHour;
     }
 }

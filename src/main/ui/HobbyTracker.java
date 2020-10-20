@@ -7,11 +7,16 @@ import model.Milestone;
 
 import java.util.LinkedList;
 import java.util.Scanner;
+// The HobbyTracker keeps track of user inputs and prompts them depending
+// one what information needs to be submitted.
 
 public class HobbyTracker {
-    public HobbyList hobbyList;
+    private HobbyList hobbyList;
     private Scanner input;
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS: starts runTracker
     public HobbyTracker() {
         runTracker();
     }
@@ -19,6 +24,10 @@ public class HobbyTracker {
     // original frame work from TellerApp, runTeller, processCommand, init, and
     // displayMenu in the AccountNotRobust program
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS: sees if the tracker should still be running and runs the app if not
+    //          exited from yet
     private void runTracker() {
         boolean keepGoing = true;
         String command;
@@ -107,15 +116,15 @@ public class HobbyTracker {
         String milestoneDescription = description.nextLine();
 
         Milestone milestone = new Milestone(milestoneTitle);
-        milestone.setTime(hobby.totalProgress);
+        milestone.setTime(hobby.getTotalProgress());
         milestone.setDescription(milestoneDescription);
 
-        LinkedList<Milestone> milestones = hobby.milestoneList;
+        LinkedList<Milestone> milestones = hobby.getMilestoneList();
         hobby.addMilestone(milestone);
 
         DatedHour lastEntry = milestones.get(milestones.size() - 1).savedTime;
         System.out.println("The milestone \"" + milestoneTitle + "\"" + " has been added to " + hobby.getName()
-                + " log at " + lastEntry.getHour() + " hours on " + lastEntry.getDate());
+                + " log at " + lastEntry.getProgressHour() + " hours on " + lastEntry.getDate());
     }
 
     // REQUIRES:
@@ -149,9 +158,9 @@ public class HobbyTracker {
 
         hobby.addTime(time);
 
-        LinkedList<DatedHour> progress = hobby.progressList;
+        LinkedList<DatedHour> progress = hobby.getProgressList();
         DatedHour lastEntry = progress.get(progress.size() - 1);
-        System.out.println(time + " hours added; Current progress of " + lastEntry.getHour()
+        System.out.println(time + " hours added; Current progress of " + lastEntry.getProgressHour()
                 + " hours" + " updated to " + hobby.getName() + " progress at " + lastEntry.getDate());
     }
 
@@ -164,7 +173,7 @@ public class HobbyTracker {
         } else {
             for (int i = 0; i < hobbyList.length(); i++) {
                 Hobby hobby = hobbyList.getByIndex(i);
-                System.out.println(hobby.getName() + " - Total Hours:" + hobby.totalProgress);
+                System.out.println(hobby.getName() + " - Total Hours:" + hobby.getTotalProgress());
             }
         }
     }
@@ -197,6 +206,10 @@ public class HobbyTracker {
         return hobbyList.getByIndex(index);
     }
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS: returns the index of the location where the given Hobby name is, -1 if
+    //          can't be found
     public int indexFromInput() {
         Scanner answer = new Scanner(System.in);
         String name = answer.nextLine();

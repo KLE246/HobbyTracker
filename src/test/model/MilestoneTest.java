@@ -31,7 +31,7 @@ class MilestoneTest {
 
         DatedHour time = milestone.savedTime;
         String date = time.getDate();
-        int hour = time.getHour();
+        int hour = time.getProgressHour();
 
         assertEquals( 34, hour);
         assertEquals(expected, date);
@@ -48,7 +48,7 @@ class MilestoneTest {
 
             DatedHour time = milestone.savedTime;
             String date = time.getDate();
-            hour = time.getHour();
+            hour = time.getProgressHour();
 
             assertEquals(i, hour);
             assertEquals(expected, date);

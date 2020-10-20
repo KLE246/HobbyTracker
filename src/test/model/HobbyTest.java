@@ -17,9 +17,9 @@ class HobbyTest {
     @Test
     public void testHobbyConstructor() {
         assertEquals("Test", hobby.getName());
-        assertEquals(0, hobby.totalProgress);
-        assertEquals(0, hobby.progressList.size());
-        assertEquals(0, hobby.milestoneList.size());
+        assertEquals(0, hobby.getTotalProgress());
+        assertEquals(0, hobby.getProgressList().size());
+        assertEquals(0, hobby.getMilestoneList().size());
     }
 
     @Test
@@ -28,22 +28,22 @@ class HobbyTest {
         for (int i = 0; i < 6; i++) {
             hobby.addTime(i);
             progressInRun += i;
-            assertEquals(progressInRun, hobby.totalProgress);
-            assertEquals(i + 1, hobby.progressList.size());
+            assertEquals(progressInRun, hobby.getTotalProgress());
+            assertEquals(i + 1, hobby.getProgressList().size());
         }
     }
 
     @Test
     public void testAddMilestone() {
         Milestone milestone = new Milestone("testMilestone");
-        assertEquals(0, hobby.milestoneList.size());
+        assertEquals(0, hobby.getMilestoneList().size());
 
         hobby.addMilestone(milestone);
-        assertEquals(1, hobby.milestoneList.size());
+        assertEquals(1, hobby.getMilestoneList().size());
 
         Milestone nextMilestone = new Milestone("nextTestMilestone");
         hobby.addMilestone(nextMilestone);
-        assertEquals(2, hobby.milestoneList.size());
+        assertEquals(2, hobby.getMilestoneList().size());
     }
 
     @Test
@@ -58,9 +58,9 @@ class HobbyTest {
         assertEquals(6, log.size());
 
         // test example submission and output
-        DatedHour datedHour = hobby.progressList.get(2);
+        DatedHour datedHour = hobby.getProgressList().get(2);
         String logEntry = log.get(2);
-        String expected = datedHour.getHour() + " hours as of " + datedHour.getDate();
+        String expected = datedHour.getProgressHour() + " hours as of " + datedHour.getDate();
         assertEquals(expected, logEntry);
     }
 
@@ -80,10 +80,10 @@ class HobbyTest {
         assertEquals(6, log.size());
 
         // test example submission and output
-        Milestone milestone = hobby.milestoneList.get(3);
+        Milestone milestone = hobby.getMilestoneList().get(3);
         String logEntry = log.get(3);
         DatedHour datedHour = milestone.savedTime;
-        String expected = milestone.title + " \nsubmitted " + datedHour.getDate() + " after " + datedHour.getHour()
+        String expected = milestone.title + " \nsubmitted " + datedHour.getDate() + " after " + datedHour.getProgressHour()
                 + " hours of progress \nDescription:\n" + milestone.description + "\n";
         assertEquals(expected, logEntry);
     }

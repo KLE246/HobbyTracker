@@ -29,7 +29,7 @@ class DatedHourTest {
 
     @Test
     public void testGetHour() {
-        assertEquals(5, datedHour.getHour());
+        assertEquals(5, datedHour.getProgressHour());
     }
 
 }
