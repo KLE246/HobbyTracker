@@ -28,7 +28,18 @@ class HobbyListTest {
         Hobby hobby = new Hobby("test");
         hobbyList.add(hobby);
         assertEquals(1,hobbyList.length());
+        assertEquals("Test", hobbyList.getByIndex(0).getName());
+
     }
+
+    @Test
+    public void testAddByString() {
+        assertEquals(0, hobbyList.length());
+        hobbyList.add("test");
+        assertEquals(1,hobbyList.length());
+        assertEquals("Test", hobbyList.getByIndex(0).getName());
+    }
+
 
     @Test
     public void testGetByIndex() {

@@ -33,3 +33,6 @@ review much  more appealing.
 - As a user, I want to be able to see a log of milestones in a hobby
 - As a user, I want to be able to see a log of when I added hours to my progression
 
+- As a user, I want to be able to save my hobby list and all information contained in each hobby
+- As a user, I want to be able to reopen my saved file to continually update my hobby information
+

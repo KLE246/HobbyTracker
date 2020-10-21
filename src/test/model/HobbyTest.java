@@ -26,10 +26,11 @@ class HobbyTest {
     public void testAddTime() {
         int progressInRun = 0;
         for (int i = 0; i < 6; i++) {
-            hobby.addTime(i);
+            DatedHour lastEntry = hobby.addTime(i);
             progressInRun += i;
             assertEquals(progressInRun, hobby.getTotalProgress());
             assertEquals(i + 1, hobby.getProgressList().size());
+            assertEquals(hobby.getProgressList().get(i),lastEntry);
         }
     }
 
@@ -82,9 +83,9 @@ class HobbyTest {
         // test example submission and output
         Milestone milestone = hobby.getMilestoneList().get(3);
         String logEntry = log.get(3);
-        DatedHour datedHour = milestone.savedTime;
-        String expected = milestone.title + " \nsubmitted " + datedHour.getDate() + " after " + datedHour.getProgressHour()
-                + " hours of progress \nDescription:\n" + milestone.description + "\n";
+        DatedHour datedHour = milestone.getSavedTime();
+        String expected = milestone.getTitle() + " \nsubmitted " + datedHour.getDate() + " after " + datedHour.getProgressHour()
+                + " hours of progress \nDescription:\n" + milestone.getDescription() + "\n";
         assertEquals(expected, logEntry);
     }
 }

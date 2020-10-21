@@ -18,7 +18,7 @@ class MilestoneTest {
     @BeforeEach
     public void setUp() {
         hobby = new Hobby("Test");
-        milestone = new Milestone("TestMilestone");
+        milestone = new Milestone("TestMilestone", "a description", 5);
         hobby.addMilestone(milestone);
     }
 
@@ -29,7 +29,7 @@ class MilestoneTest {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String expected = dateFormat.format(dateAtInstance);
 
-        DatedHour time = milestone.savedTime;
+        DatedHour time = milestone.getSavedTime();
         String date = time.getDate();
         int hour = time.getProgressHour();
 
@@ -46,7 +46,7 @@ class MilestoneTest {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
             String expected = dateFormat.format(dateAtInstance);
 
-            DatedHour time = milestone.savedTime;
+            DatedHour time = milestone.getSavedTime();
             String date = time.getDate();
             hour = time.getProgressHour();
 
@@ -59,6 +59,6 @@ class MilestoneTest {
     public void testSetDescription() {
         String description = "Sample description";
         milestone.setDescription(description);
-        assertEquals(description, milestone.description);
+        assertEquals(description, milestone.getDescription());
     }
 }

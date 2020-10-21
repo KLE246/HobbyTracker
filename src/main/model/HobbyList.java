@@ -5,7 +5,7 @@ import java.util.LinkedList;
 // The hobbyList is what the program looks through at the first level
 // Hobbies are added to it and can be searched for by index or Hobby name
 public class HobbyList {
-    public LinkedList<Hobby> hobbyList;
+    private final LinkedList<Hobby> hobbyList;
 
     // REQUIRES:
     // MODIFIES:
@@ -18,6 +18,14 @@ public class HobbyList {
     // MODIFIES: this
     // EFFECTS: adds a hobby into the list
     public void add(Hobby hobby) {
+        hobbyList.add(hobby);
+    }
+
+    // REQUIRES:
+    // MODIFIES: this
+    // EFFECTS: adds a hobby into the list given a string
+    public void add(String name) {
+        Hobby hobby = new Hobby(name);
         hobbyList.add(hobby);
     }
 

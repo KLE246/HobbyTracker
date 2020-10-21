@@ -7,6 +7,7 @@ import model.Milestone;
 
 import java.util.LinkedList;
 import java.util.Scanner;
+
 // The HobbyTracker keeps track of user inputs and prompts them depending
 // one what information needs to be submitted.
 
@@ -98,8 +99,7 @@ public class HobbyTracker {
         System.out.println("Name the hobby or skill");
         Scanner answer = new Scanner(System.in);
         String name = answer.nextLine();
-        Hobby hobby = new Hobby(name);
-        hobbyList.add(hobby);
+        hobbyList.add(name);
     }
 
     // REQUIRES:
@@ -115,14 +115,10 @@ public class HobbyTracker {
         Scanner description = new Scanner(System.in);
         String milestoneDescription = description.nextLine();
 
-        Milestone milestone = new Milestone(milestoneTitle);
-        milestone.setTime(hobby.getTotalProgress());
-        milestone.setDescription(milestoneDescription);
-
-        LinkedList<Milestone> milestones = hobby.getMilestoneList();
+        Milestone milestone = new Milestone(milestoneTitle, milestoneDescription, hobby.getTotalProgress());
         hobby.addMilestone(milestone);
+        DatedHour lastEntry = milestone.getSavedTime();
 
-        DatedHour lastEntry = milestones.get(milestones.size() - 1).savedTime;
         System.out.println("The milestone \"" + milestoneTitle + "\"" + " has been added to " + hobby.getName()
                 + " log at " + lastEntry.getProgressHour() + " hours on " + lastEntry.getDate());
     }
@@ -156,10 +152,8 @@ public class HobbyTracker {
         Scanner timeGiven = new Scanner(System.in);
         int time = Integer.parseInt(timeGiven.nextLine());
 
-        hobby.addTime(time);
+        DatedHour lastEntry = hobby.addTime(time);
 
-        LinkedList<DatedHour> progress = hobby.getProgressList();
-        DatedHour lastEntry = progress.get(progress.size() - 1);
         System.out.println(time + " hours added; Current progress of " + lastEntry.getProgressHour()
                 + " hours" + " updated to " + hobby.getName() + " progress at " + lastEntry.getDate());
     }

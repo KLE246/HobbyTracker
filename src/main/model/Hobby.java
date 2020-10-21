@@ -5,7 +5,7 @@ import java.util.LinkedList;
 // Hobbies have names, an total hourly progress, and two lists for milestones and progress
 // totalProgress is initially 0 and both progress and milestone lists are empty
 public class Hobby {
-    private String name;
+    private final String name;
     private int totalProgress;
     private LinkedList<DatedHour> progressList;
     private LinkedList<Milestone> milestoneList;
@@ -24,10 +24,11 @@ public class Hobby {
     // MODIFIES: this
     // EFFECTS: adds the time towards the total hours in the hobby
     //          and adds an entry into progressList
-    public void addTime(int time) {
+    public DatedHour addTime(int time) {
         totalProgress = totalProgress + time;
         DatedHour datedHour = new DatedHour(totalProgress);
         progressList.add(datedHour);
+        return datedHour;
     }
 
     // REQUIRES:
@@ -61,9 +62,10 @@ public class Hobby {
     public LinkedList<String> getMilestoneLog() {
         LinkedList<String> log = new LinkedList<>();
         for (Milestone milestone : milestoneList) {
-            DatedHour datedHour = milestone.savedTime;
-            log.add(milestone.title + " \nsubmitted " + datedHour.getDate() + " after " + datedHour.getProgressHour()
-                    + " hours of progress \nDescription:\n" + milestone.description + "\n");
+            DatedHour datedHour = milestone.getSavedTime();
+            log.add(milestone.getTitle() + " \nsubmitted " + datedHour.getDate() + " after "
+                    + datedHour.getProgressHour() + " hours of progress \nDescription:\n"
+                    + milestone.getDescription() + "\n");
         }
         return log;
     }
