@@ -24,6 +24,15 @@ public class Milestone {
         savedTime = new DatedHour(totalProgress);
     }
 
+    // REQUIRES:
+    // MODIFIES: this
+    // EFFECTS: creates a Milestone with title, description,and preset saved time
+    public Milestone(String title, String description, DatedHour savedTime) {
+        this.title = title;
+        this.description = description;
+        this.savedTime = savedTime;
+    }
+
     // REQUIRES: savedTime has not yet been set
     // MODIFIES: this
     // EFFECTS: adds the time to be saved for this milestone

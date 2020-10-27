@@ -1,4 +1,4 @@
-# Milestone Tracker
+# Hobby Tracker
 
 ## Document milestones and progress towards a goal of mastery
 

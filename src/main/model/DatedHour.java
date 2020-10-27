@@ -1,6 +1,7 @@
 package model;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,6 +22,14 @@ public class DatedHour {
 
     // REQUIRES:
     // MODIFIES:
+    // EFFECTS: creates a DateHour with the date and a specified time
+    public DatedHour(int progressHour, Date date) {
+        this.date = date;
+        this.progressHour = progressHour;
+    }
+
+    // REQUIRES:
+    // MODIFIES:
     // EFFECTS: returns the date in a specified format
     public String getDate() {
         String datePattern = "yyyy-MM-dd hh:mm";
@@ -34,4 +43,5 @@ public class DatedHour {
     public int getProgressHour() {
         return progressHour;
     }
+
 }

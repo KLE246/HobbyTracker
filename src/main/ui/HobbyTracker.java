@@ -4,21 +4,32 @@ import model.DatedHour;
 import model.Hobby;
 import model.HobbyList;
 import model.Milestone;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
-import java.util.LinkedList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+// added JSON parts of WorkRoomApp from JsonSerializationDemo
 
 // The HobbyTracker keeps track of user inputs and prompts them depending
 // one what information needs to be submitted.
 
 public class HobbyTracker {
+    private static final String JSON_STORE = "./data/hobbyList.json";
     private HobbyList hobbyList;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: starts runTracker
-    public HobbyTracker() {
+    public HobbyTracker() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        hobbyList = new HobbyList();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runTracker();
     }
 
@@ -26,14 +37,14 @@ public class HobbyTracker {
     // displayMenu in the AccountNotRobust program
 
     // REQUIRES:
-    // MODIFIES:
+    // MODIFIES: this
     // EFFECTS: sees if the tracker should still be running and runs the app if not
     //          exited from yet
     private void runTracker() {
         boolean keepGoing = true;
         String command;
 
-        initializeHobbies();
+        //initializeHobbies();
 
         while (keepGoing) {
             prompts();
@@ -55,6 +66,8 @@ public class HobbyTracker {
             addHobby();
         } else if (command.equals("all")) {
             seeAllHobbiesAndHours();
+        } else if (command.equals("name")) {
+            nameHobbyList();
         } else if (command.equals("log")) {
             displayLog();
         } else if (command.equals("add")) {
@@ -63,6 +76,10 @@ public class HobbyTracker {
             addMilestone();
         } else if (command.equals("ms")) {
             getMilestoneLog();
+        } else if (command.equals("s")) {
+            saveHobbyList();
+        } else if (command.equals("l")) {
+            loadHobbyList();
         } else {
             System.out.println("Try again");
         }
@@ -72,6 +89,8 @@ public class HobbyTracker {
     public void prompts() {
         if (hobbyList.length() == 0) {
             System.out.println("To add a hobby - \"new\"");
+            System.out.println("To load a hobby list = \"l\"");
+            System.out.println("To name your hobby list = \"name\"");
             System.out.println("To exit Tracker - \"exit\"");
         } else {
             System.out.println("To add a hobby - \"new\"");
@@ -80,15 +99,19 @@ public class HobbyTracker {
             System.out.println("To add hours to a hobby - \"add\"");
             System.out.println("To see a log of milestones in a hobby - \"ms\"");
             System.out.println("To add a milestone to a hobby - \"event\"");
+            System.out.println("To save/load your hobby list - \"s\" or \"l\"");
             System.out.println("To exit Tracker - \"exit\"");
         }
     }
 
     // REQUIRES:
     // MODIFIES: this
-    // EFFECTS: creates initial empty list of hobbies
-    private void initializeHobbies() {
-        hobbyList = new HobbyList();
+    // EFFECTS: sets the name of the hobbyList
+    private void nameHobbyList() {
+        System.out.println("Give your hobby list a name:  ");
+        Scanner answer = new Scanner(System.in);
+        String name = answer.nextLine();
+        hobbyList.setName(name);
         input = new Scanner(System.in);
     }
 
@@ -99,7 +122,7 @@ public class HobbyTracker {
         System.out.println("Name the hobby or skill");
         Scanner answer = new Scanner(System.in);
         String name = answer.nextLine();
-        hobbyList.add(name);
+        hobbyList.addHobby(name);
     }
 
     // REQUIRES:
@@ -186,7 +209,7 @@ public class HobbyTracker {
         } else if (type.equals("addProgress")) {
             phrase = "Which hobby have you progressed in?";
         }
-        for (String name : hobbyList.giveAllHobbies()) {
+        for (String name : hobbyList.giveAllHobbyNames()) {
             System.out.println(name);
         }
         System.out.println(phrase);
@@ -208,5 +231,28 @@ public class HobbyTracker {
         Scanner answer = new Scanner(System.in);
         String name = answer.nextLine();
         return hobbyList.getByName(name);
+    }
+
+    // EFFECTS: saves the hobbyList to file
+    private void saveHobbyList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(hobbyList);
+            jsonWriter.close();
+            System.out.println("Saved " + hobbyList.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads hobbyList from file
+    private void loadHobbyList() {
+        try {
+            hobbyList = jsonReader.read();
+            System.out.println("Loaded " + hobbyList.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }

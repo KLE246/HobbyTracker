@@ -19,14 +19,14 @@ class HobbyListTest {
     public void testLength() {
         assertEquals(0, hobbyList.length());
         Hobby hobby = new Hobby("test");
-        hobbyList.add(hobby);
+        hobbyList.addHobby(hobby);
         assertEquals(1,hobbyList.length());
     }
     @Test
     public void testAdd() {
         assertEquals(0, hobbyList.length());
         Hobby hobby = new Hobby("test");
-        hobbyList.add(hobby);
+        hobbyList.addHobby(hobby);
         assertEquals(1,hobbyList.length());
         assertEquals("Test", hobbyList.getByIndex(0).getName());
 
@@ -35,7 +35,7 @@ class HobbyListTest {
     @Test
     public void testAddByString() {
         assertEquals(0, hobbyList.length());
-        hobbyList.add("test");
+        hobbyList.addHobby("test");
         assertEquals(1,hobbyList.length());
         assertEquals("Test", hobbyList.getByIndex(0).getName());
     }
@@ -44,12 +44,12 @@ class HobbyListTest {
     @Test
     public void testGetByIndex() {
         Hobby hobby = new Hobby("test");
-        hobbyList.add(hobby);
+        hobbyList.addHobby(hobby);
         assertEquals(hobby, hobbyList.getByIndex(0));
         Hobby hobbyTwo = new Hobby("test2");
         Hobby hobbyThree = new Hobby("test3");
-        hobbyList.add(hobbyTwo);
-        hobbyList.add(hobbyThree);
+        hobbyList.addHobby(hobbyTwo);
+        hobbyList.addHobby(hobbyThree);
         assertEquals(hobbyThree, hobbyList.getByIndex(2));
         assertEquals(hobbyTwo, hobbyList.getByIndex(1));
     }
@@ -58,8 +58,8 @@ class HobbyListTest {
     public void testGetByName() {
         Hobby hobby = new Hobby("a1");
         Hobby nextHobby = new Hobby("b2");
-        hobbyList.add(hobby);
-        hobbyList.add(nextHobby);
+        hobbyList.addHobby(hobby);
+        hobbyList.addHobby(nextHobby);
         assertEquals(2,hobbyList.length());
         assertEquals(1, hobbyList.getByName("b2"));
         assertEquals(0, hobbyList.getByName("a1"));
@@ -69,17 +69,17 @@ class HobbyListTest {
     @Test
     public void testGiveAllHobbiesNone() {
         assertEquals(0, hobbyList.length());
-        LinkedList<String> names = hobbyList.giveAllHobbies();
+        LinkedList<String> names = hobbyList.giveAllHobbyNames();
         assertEquals(0, names.size());
     }
 
     @Test
     public void testGiveAllHobbies() {
-        hobbyList.add(new Hobby ("a1"));
-        hobbyList.add(new Hobby ("B2"));
-        hobbyList.add(new Hobby ("c3"));
+        hobbyList.addHobby(new Hobby ("a1"));
+        hobbyList.addHobby(new Hobby ("B2"));
+        hobbyList.addHobby(new Hobby ("c3"));
         assertEquals(3, hobbyList.length());
-        LinkedList<String> names = hobbyList.giveAllHobbies();
+        LinkedList<String> names = hobbyList.giveAllHobbyNames();
         assertEquals(3, names.size());
         assertEquals("A1",names.get(0));
         assertEquals("B2",names.get(1));

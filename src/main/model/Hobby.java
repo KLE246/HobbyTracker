@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.LinkedList;
 
 // Hobbies have names, an total hourly progress, and two lists for milestones and progress
 // totalProgress is initially 0 and both progress and milestone lists are empty
-public class Hobby {
+public class Hobby implements Writable {
     private final String name;
     private int totalProgress;
     private LinkedList<DatedHour> progressList;
@@ -78,6 +81,20 @@ public class Hobby {
     }
 
     // REQUIRES:
+    // MODIFIES: this
+    // EFFECTS: set current totalProgress
+    public void setTotalProgress(int totalProgress) {
+        this.totalProgress = totalProgress;
+    }
+
+    // REQUIRES:
+    // MODIFIES: this
+    // EFFECTS: set milestoneList
+    public void setMilestoneList(LinkedList<Milestone> milestoneList) {
+        this.milestoneList = milestoneList;
+    }
+
+    // REQUIRES:
     // MODIFIES:
     // EFFECTS: return current milestoneList
     public LinkedList<Milestone> getMilestoneList() {
@@ -89,5 +106,23 @@ public class Hobby {
     // EFFECTS: return current progressList
     public LinkedList<DatedHour> getProgressList() {
         return progressList;
+    }
+
+    // EFFECTS: returns the hobby as a JSONObject
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("total progress", totalProgress);
+        json.put("progress list", progressList);
+        json.put("milestone list", milestoneList);
+        return json;
+    }
+
+    // REQUIRES:
+    // MODIFIES: this
+    // EFFECTS: set progressList
+    public void setProgressList(LinkedList<DatedHour> progressList) {
+        this.progressList = progressList;
     }
 }
