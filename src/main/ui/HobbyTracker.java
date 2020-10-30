@@ -234,6 +234,7 @@ public class HobbyTracker {
         return hobbyList.getByName(name);
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the hobbyList to file
     private void saveHobbyList() {
         try {

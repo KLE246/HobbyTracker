@@ -98,6 +98,7 @@ public class HobbyList implements Writable {
     }
 
     //JSON methods taken from WorkRoom class of JsonSerializationDemo
+    // EFFECTS: turns a HobbyList into a JSONObject and returns it
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
