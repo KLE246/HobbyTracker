@@ -88,6 +88,12 @@
                 }
             ],
             "total progress": 387
+        },
+        {
+            "progress list": [],
+            "name": "Sample",
+            "milestone list": [],
+            "total progress": 0
         }
     ]
 }

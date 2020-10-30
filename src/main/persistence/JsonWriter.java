@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of hobbyList to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
