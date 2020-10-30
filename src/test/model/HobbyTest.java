@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -84,8 +85,24 @@ class HobbyTest {
         Milestone milestone = hobby.getMilestoneList().get(3);
         String logEntry = log.get(3);
         DatedHour datedHour = milestone.getSavedTime();
-        String expected = milestone.getTitle() + " \nsubmitted " + datedHour.getDate() + " after " + datedHour.getProgressHour()
+        String expected = milestone.getTitle() + " \nsubmitted " + datedHour.getDate() + " after "
+                + datedHour.getProgressHour()
                 + " hours of progress \nDescription:\n" + milestone.getDescription() + "\n";
         assertEquals(expected, logEntry);
+    }
+
+    @Test
+    public void testToJson() {
+        hobby = new Hobby("test");
+        DatedHour datedHour = new DatedHour(1);
+        hobby.addTime(1);
+        hobby.addMilestone(new Milestone("sample", "example", datedHour));
+        JSONObject jsonHobby = hobby.toJson();
+        assertEquals("Test", jsonHobby.getString("name"));
+        assertEquals(1, jsonHobby.getInt("total progress"));
+        assertEquals("example",
+                jsonHobby.getJSONArray("milestone list").getJSONObject(0).getString("description"));
+        assertEquals(1,
+                jsonHobby.getJSONArray("progress list").getJSONObject(0).getInt("progressHour"));
     }
 }

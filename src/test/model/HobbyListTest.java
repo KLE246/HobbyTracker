@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -84,5 +85,16 @@ class HobbyListTest {
         assertEquals("A1",names.get(0));
         assertEquals("B2",names.get(1));
         assertEquals("C3",names.get(2));
+    }
+
+    @Test
+    public void testToJson() {
+        Hobby hobbyOne = new Hobby ("a1");
+        Hobby hobbyTwo = new Hobby ("B2");
+        hobbyList.addHobby(hobbyOne);
+        hobbyList.addHobby(hobbyTwo);
+        JSONObject jsonList = hobbyList.toJson();
+        assertEquals("A1",jsonList.getJSONArray("Hobbies").getJSONObject(0).getString("name"));
+        assertEquals("B2",jsonList.getJSONArray("Hobbies").getJSONObject(1).getString("name"));
     }
 }

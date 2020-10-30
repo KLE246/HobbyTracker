@@ -9,6 +9,7 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 // added JSON parts of WorkRoomApp from JsonSerializationDemo
 
@@ -253,6 +254,8 @@ public class HobbyTracker {
             System.out.println("Loaded " + hobbyList.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
+        } catch (ParseException e) {
+            System.out.println("Exception from parse dateString");
         }
     }
 }

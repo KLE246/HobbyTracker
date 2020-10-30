@@ -21,6 +21,15 @@ class DatedHourTest {
     }
 
     @Test
+    public void testConstructor() {
+        datedHour = new DatedHour(4, dateAtInstance);
+        assertEquals(4, datedHour.getProgressHour());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        String expected = dateFormat.format(dateAtInstance);
+        assertEquals(expected, datedHour.getDate());
+    }
+
+    @Test
     public void testGetDate() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String expected = dateFormat.format(dateAtInstance);

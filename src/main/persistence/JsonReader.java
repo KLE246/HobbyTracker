@@ -29,7 +29,7 @@ public class JsonReader {
 
     // EFFECTS: reads hobbyList from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public HobbyList read() throws IOException {
+    public HobbyList read() throws IOException, ParseException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseHobbyList(jsonObject);
@@ -47,7 +47,7 @@ public class JsonReader {
     }
 
     // EFFECTS: parses hobbyList from JSON object and returns it
-    private HobbyList parseHobbyList(JSONObject jsonObject) {
+    private HobbyList parseHobbyList(JSONObject jsonObject) throws ParseException {
         String name = jsonObject.getString("name");
         HobbyList hobbyList = new HobbyList();
         hobbyList.setName(name);
@@ -57,7 +57,7 @@ public class JsonReader {
 
     // MODIFIES: hobbyList
     // EFFECTS: parses hobbies from JSON object and adds them to hobbyList
-    private void addHobbies(HobbyList hobbyList, JSONObject jsonObject) {
+    private void addHobbies(HobbyList hobbyList, JSONObject jsonObject) throws ParseException {
         JSONArray jsonArray = jsonObject.getJSONArray("Hobbies");
         for (Object json : jsonArray) {
             JSONObject nextHobby = (JSONObject) json;
@@ -67,7 +67,7 @@ public class JsonReader {
 
     // MODIFIES: hobbyList
     // EFFECTS: parses Hobby from JSON object and adds it to hobbyList
-    private void addHobby(HobbyList hobbyList, JSONObject jsonObject) {
+    private void addHobby(HobbyList hobbyList, JSONObject jsonObject) throws ParseException {
         String name = jsonObject.getString("name");
         int totalProgress = jsonObject.getInt("total progress");
 
@@ -117,17 +117,13 @@ public class JsonReader {
     }
 
     // EFFECTS: makes list of progress from JSONArray
-    private LinkedList<DatedHour> getProgressList(Hobby hobby, JSONObject jsonObject) {
+    private LinkedList<DatedHour> getProgressList(Hobby hobby, JSONObject jsonObject) throws ParseException {
         JSONArray jsonArray = jsonObject.getJSONArray("progress list");
         LinkedList<DatedHour> progressList = new LinkedList<>();
         DatedHour progressEntryDatedHour = null;
         for (Object json : jsonArray) {
             JSONObject progressEntry = (JSONObject) json;
-            try {
-                progressEntryDatedHour = makeProgressEntry(progressEntry);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            progressEntryDatedHour = makeProgressEntry(progressEntry);
             progressList.add(progressEntryDatedHour);
         }
         return progressList;

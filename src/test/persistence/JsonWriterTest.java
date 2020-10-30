@@ -7,6 +7,7 @@ import model.Milestone;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,6 +44,8 @@ class JsonWriterTest extends JsonTest {
             assertEquals(0, hobbyList.length());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
+        } catch (ParseException e) {
+            fail("ParseException should not have been thrown");
         }
     }
 
@@ -106,6 +109,8 @@ class JsonWriterTest extends JsonTest {
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
+        } catch (ParseException e) {
+            fail("ParseException should not have been thrown");
         }
     }
 }
