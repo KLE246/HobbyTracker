@@ -3,12 +3,15 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 
 // Hobbies have names, an total hourly progress, and two lists for milestones and progress
 // totalProgress is initially 0 and both progress and milestone lists are empty
 public class Hobby implements Writable {
-    private final String name;
+    private String name;
     private int totalProgress;
     private LinkedList<DatedHour> progressList;
     private LinkedList<Milestone> milestoneList;
