@@ -29,13 +29,16 @@ public class JsonReader {
 
     // EFFECTS: reads hobbyList from file and returns it;
     // throws IOException if an error occurs reading data from file
+    // throws ParseException if an error occurs from parsing dateString
     public HobbyList read() throws IOException, ParseException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseHobbyList(jsonObject);
     }
 
-    // EFFECTS: reads source file as string and returns it
+    // method taken from JsonSerializationDemo
+
+    // EFFECTS: reads source file as string and returns it, throws IOException
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -46,7 +49,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses hobbyList from JSON object and returns it
+    // EFFECTS: parses hobbyList from JSON object and returns it, throws Parse Exception
     private HobbyList parseHobbyList(JSONObject jsonObject) throws ParseException {
         String name = jsonObject.getString("name");
         HobbyList hobbyList = new HobbyList();
@@ -56,7 +59,7 @@ public class JsonReader {
     }
 
     // MODIFIES: hobbyList
-    // EFFECTS: parses hobbies from JSON object and adds them to hobbyList
+    // EFFECTS: parses hobbies from JSON object and adds them to hobbyList,throws Parse Exception
     private void addHobbies(HobbyList hobbyList, JSONObject jsonObject) throws ParseException {
         JSONArray jsonArray = jsonObject.getJSONArray("Hobbies");
         for (Object json : jsonArray) {
@@ -66,7 +69,7 @@ public class JsonReader {
     }
 
     // MODIFIES: hobbyList
-    // EFFECTS: parses Hobby from JSON object and adds it to hobbyList
+    // EFFECTS: parses Hobby from JSON object and adds it to hobbyList,throws Parse Exception
     private void addHobby(HobbyList hobbyList, JSONObject jsonObject) throws ParseException {
         String name = jsonObject.getString("name");
         int totalProgress = jsonObject.getInt("total progress");
@@ -74,34 +77,30 @@ public class JsonReader {
         Hobby hobby = new Hobby(name);
         hobby.setTotalProgress(totalProgress);
 
-        LinkedList<DatedHour> progressList = getProgressList(hobby, jsonObject);
+        LinkedList<DatedHour> progressList = getProgressList(jsonObject);
         hobby.setProgressList(progressList);
 
-        LinkedList<Milestone> milestoneList = getMilestoneList(hobby, jsonObject);
+        LinkedList<Milestone> milestoneList = getMilestoneList(jsonObject);
         hobby.setMilestoneList(milestoneList);
         hobbyList.addHobby(hobby);
     }
 
     // MODIFIES:
-    // EFFECTS: creates a milestone list from the JSON object
-    private LinkedList<Milestone> getMilestoneList(Hobby hobby, JSONObject jsonObject) {
+    // EFFECTS: creates a milestone list from the JSON object,throws Parse Exception
+    private LinkedList<Milestone> getMilestoneList(JSONObject jsonObject) throws ParseException {
         JSONArray jsonArray = jsonObject.getJSONArray("milestone list");
         LinkedList<Milestone> milestoneList = new LinkedList<>();
         Milestone milestoneEntry = null;
         for (Object json : jsonArray) {
             JSONObject milestoneEntryJson = (JSONObject) json;
-            try {
-                milestoneEntry = makeMilestoneEntry(milestoneEntryJson);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            milestoneEntry = makeMilestoneEntry(milestoneEntryJson);
             milestoneList.add(milestoneEntry);
         }
         return milestoneList;
     }
 
     // MODIFIES:
-    // EFFECTS: returns one milestone entry with fields set accordingly
+    // EFFECTS: returns one milestone entry with fields set accordingly,throws Parse Exception
     private Milestone makeMilestoneEntry(JSONObject milestoneJson) throws ParseException {
         String title = milestoneJson.getString("title");
         String description = milestoneJson.getString("description");
@@ -116,8 +115,8 @@ public class JsonReader {
         return milestone;
     }
 
-    // EFFECTS: makes list of progress from JSONArray
-    private LinkedList<DatedHour> getProgressList(Hobby hobby, JSONObject jsonObject) throws ParseException {
+    // EFFECTS: makes list of progress from JSONArray,throws Parse Exception
+    private LinkedList<DatedHour> getProgressList(JSONObject jsonObject) throws ParseException {
         JSONArray jsonArray = jsonObject.getJSONArray("progress list");
         LinkedList<DatedHour> progressList = new LinkedList<>();
         DatedHour progressEntryDatedHour = null;
@@ -130,7 +129,7 @@ public class JsonReader {
     }
 
     // MODIFIES:
-    // EFFECTS: returns one progress entry with set dated hour
+    // EFFECTS: returns one progress entry with set dated hour,throws Parse Exception
     private DatedHour makeProgressEntry(JSONObject progressEntry) throws ParseException {
         String dateString = progressEntry.getString("date");
         Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(dateString);
