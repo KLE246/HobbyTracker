@@ -30,8 +30,11 @@ public class HobbyList implements Writable {
 
     // REQUIRES:
     // MODIFIES:
-    // EFFECTS: return name of hobbyList
+    // EFFECTS: return name of hobbyList, returns empty string if no name
     public String getName() {
+        if (name == null) {
+            return " ";
+        }
         return name;
     }
 

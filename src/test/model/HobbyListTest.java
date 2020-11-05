@@ -97,4 +97,9 @@ class HobbyListTest {
         assertEquals("A1",jsonList.getJSONArray("Hobbies").getJSONObject(0).getString("name"));
         assertEquals("B2",jsonList.getJSONArray("Hobbies").getJSONObject(1).getString("name"));
     }
+
+    @Test
+    public void testNullName() {
+        assertEquals(" ", hobbyList.getName());
+    }
 }

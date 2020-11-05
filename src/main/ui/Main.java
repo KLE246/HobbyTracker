@@ -2,6 +2,7 @@ package ui;
 
 import java.io.FileNotFoundException;
     // try and catch taken from Main of JsonSerializationDemo
+    // class is runnable to start the application
 
     // EFFECTS: runs HobbyTracker
 public class Main {

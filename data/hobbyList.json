@@ -90,10 +90,13 @@
             "total progress": 387
         },
         {
-            "progress list": [],
+            "progress list": [{
+                "date": "2020-11-03 12:06",
+                "progressHour": 10
+            }],
             "name": "Sample",
             "milestone list": [],
-            "total progress": 0
+            "total progress": 10
         }
     ]
 }
