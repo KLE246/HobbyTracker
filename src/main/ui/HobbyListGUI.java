@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 // Makes a GUI that can be used to navigate HobbyList
 
 public class HobbyListGUI extends JFrame implements ActionListener {
@@ -18,13 +19,14 @@ public class HobbyListGUI extends JFrame implements ActionListener {
     public static final int HEIGHT = 300;
 
     private JPanel buttonPanel;
-    private JPanel hobbyListPanel;
+    private JList<String> hobbyListPanel;
     private JLabel hobbyTitle;
 
     private static final String JSON_STORE = "./data/hobbyList.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private HobbyList hobbyList;
+    JTextField field = new JTextField(8);
 
     public HobbyListGUI() {
         super("Milestone Tracker");
@@ -49,10 +51,9 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         hobbyTitle = new JLabel();
-        hobbyList.setName("default");
+        hobbyList.setName("new list");
         hobbyTitle.setFont(hobbyTitle.getFont().deriveFont(16.0f));
         hobbyTitle.setText("Current Hobbies in List: " + hobbyList.getName());
-        System.out.println(hobbyList.getName());
         add(hobbyTitle, BorderLayout.NORTH);
     }
 
@@ -62,11 +63,15 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         loadButton.setActionCommand("load");
         loadButton.addActionListener(this);
         JButton renameButton = new JButton("rename HobbyList");
+        renameButton.setActionCommand("rename");
+        renameButton.addActionListener(this);
         JButton addHobbyButton = new JButton("add a Hobby");
+        JButton saveButton = new JButton("save current HobbyList to file");
         buttonPanel.add(newListButton);
         buttonPanel.add(loadButton);
         buttonPanel.add(renameButton);
         buttonPanel.add(addHobbyButton);
+        buttonPanel.add(saveButton);
 
     }
 
@@ -74,16 +79,12 @@ public class HobbyListGUI extends JFrame implements ActionListener {
     //
     //
     private void makeHobbyListArea() {
-        hobbyListPanel = new JPanel();
-        hobbyListPanel.setLayout(new BoxLayout(hobbyListPanel, BoxLayout.Y_AXIS));
-        String[] hobbyNames = new String[hobbyList.length()];
-
+        ArrayList<String> allHobbies = new ArrayList<>();
         for (int i = 0; i < hobbyList.length(); i++) {
-            hobbyNames[i] = hobbyList.getByIndex(i).getName()
-                    + " - Total Hours :" + hobbyList.getByIndex(i).getTotalProgress();
-            JList<String> hobbyJList = new JList(hobbyNames);
-            hobbyListPanel.add(hobbyJList, BorderLayout.WEST);
+            allHobbies.add(hobbyList.getByIndex(i).getName() + " - Total Hours: "
+                    + hobbyList.getByIndex(i).getTotalProgress());
         }
+        hobbyListPanel = new JList(allHobbies.toArray());
         add(hobbyListPanel, BorderLayout.WEST);
         hobbyListPanel.revalidate();
         hobbyListPanel.repaint();
@@ -105,8 +106,27 @@ public class HobbyListGUI extends JFrame implements ActionListener {
             makeHobbyListArea();
             hobbyTitle.setText("Current Hobbies in List: " + hobbyList.getName());
             revalidate();
-
+        } else if (e.getActionCommand().equals("rename")) {
+            renameDialogBox();
         }
+    }
+
+    private void renameDialogBox() {
+        JFrame newFrame = new JFrame("Renaming HobbyList");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        newFrame.setSize(300,100);
+        newFrame.setLayout(new FlowLayout());
+        JButton renameButton = new JButton("Rename List");
+        // adding local button for new window
+        renameButton.addActionListener(e -> {
+            hobbyList.setName(field.getText());
+            hobbyTitle.setText("Current Hobbies in List: " + hobbyList.getName());
+            revalidate();
+            newFrame.dispose();
+        });
+        newFrame.add(field);
+        newFrame.add(renameButton);
+        newFrame.setVisible(true);
     }
 
     // MODIFIES: this
@@ -120,6 +140,9 @@ public class HobbyListGUI extends JFrame implements ActionListener {
             System.out.println("Exception from parse dateString");
         }
     }
+
+    //todo: add visual graph of total progress and time
+    //      set up middle region
 }
 
 
