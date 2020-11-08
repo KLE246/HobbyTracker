@@ -128,4 +128,11 @@ public class Hobby implements Writable {
     public void setProgressList(LinkedList<DatedHour> progressList) {
         this.progressList = progressList;
     }
+
+    //
+    //
+    // EFFECTS: create a line chart of the progressHours vs Date
+    public void makeChart() {
+
+    }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "Kevin",
+    "name": "Test",
     "Hobbies": [
         {
             "progress list": [
@@ -25,7 +25,7 @@
                 },
                 {
                     "date": "2020-10-27 12:59",
-                    "progressHour": 123
+                    "progressHour": 25
                 }
             ],
             "name": "Code",
@@ -41,13 +41,13 @@
                 {
                     "savedTime": {
                         "date": "2020-10-27 12:59",
-                        "progressHour": 123
+                        "progressHour": 25
                     },
                     "description": "seocnddafasdfasdcasdcasdcaas",
                     "title": "second"
                 }
             ],
-            "total progress": 123
+            "total progress": 25
         },
         {
             "progress list": [
@@ -88,15 +88,6 @@
                 }
             ],
             "total progress": 387
-        },
-        {
-            "progress list": [{
-                "date": "2020-11-03 12:06",
-                "progressHour": 10
-            }],
-            "name": "Sample",
-            "milestone list": [],
-            "total progress": 10
         }
     ]
 }
