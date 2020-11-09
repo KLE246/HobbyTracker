@@ -90,13 +90,40 @@
             "total progress": 387
         },
         {
-            "progress list": [{
-                "date": "2020-11-03 12:06",
-                "progressHour": 10
-            }],
+            "progress list": [
+                {
+                    "date": "2020-11-03 12:06",
+                    "progressHour": 10
+                },
+                {
+                    "date": "2020-11-08 11:27",
+                    "progressHour": 20
+                },
+                {
+                    "date": "2020-11-08 11:33",
+                    "progressHour": 25
+                }
+            ],
             "name": "Sample",
-            "milestone list": [],
-            "total progress": 10
+            "milestone list": [
+                {
+                    "savedTime": {
+                        "date": "2020-11-08 11:27",
+                        "progressHour": 10
+                    },
+                    "description": "testing GUI addition",
+                    "title": "First test"
+                },
+                {
+                    "savedTime": {
+                        "date": "2020-11-08 11:27",
+                        "progressHour": 20
+                    },
+                    "description": "Second GUI addition",
+                    "title": "second test"
+                }
+            ],
+            "total progress": 25
         }
     ]
 }

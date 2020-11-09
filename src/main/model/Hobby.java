@@ -1,5 +1,7 @@
 package model;
 
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -131,8 +133,15 @@ public class Hobby implements Writable {
 
     //
     //
-    // EFFECTS: create a line chart of the progressHours vs Date
-    public void makeChart() {
-
+    // EFFECTS: create a dataset of progress hours and dates
+    public CategoryDataset makeDataset() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//        for (DatedHour entry : progressList) {
+//            dataset.addValue(entry.getProgressHour(), entry.getDate().);
+//            //todo: make a dataset with progress hours and time
+//            //      send back to GUI
+//            //      make plot in new frame
+//        }
+        return dataset;
     }
 }

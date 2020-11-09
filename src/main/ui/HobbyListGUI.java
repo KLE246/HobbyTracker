@@ -2,6 +2,8 @@ package ui;
 
 import model.Hobby;
 import model.HobbyList;
+import model.Milestone;
+import org.jfree.data.category.CategoryDataset;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -15,7 +17,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.LinkedList;
-import java.util.stream.IntStream;
 // Makes a GUI that can be used to navigate HobbyList
 
 public class HobbyListGUI extends JFrame implements ActionListener {
@@ -144,7 +145,7 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         addTimePanel.add(addTimeButton);
         addTimePanel.add(hoursToAddField);
         JButton getLogButton = new JButton("Progression log");
-        getLogButton.setActionCommand("progLog");
+        getLogButton.setActionCommand("progressionLog");
         getLogButton.addActionListener(this);
         JButton addMilestoneButton = new JButton("Add a Milestone");
         addMilestoneButton.setActionCommand("addMilestone");
@@ -193,16 +194,17 @@ public class HobbyListGUI extends JFrame implements ActionListener {
             renameDialogBox();
         } else if (e.getActionCommand().equals("save")) {
             saveLoadDialogBox("Save");
+            remove(hobbyOptionsPanel);
         } else if (e.getActionCommand().equals("new")) {
             createNewList();
         } else if (e.getActionCommand().equals("add")) {
             addHobbyDialogBox();
         } else if (e.getActionCommand().equals("addTime")) {
             addTime();
-        } else if (e.getActionCommand().equals("progLog")) {
+        } else if (e.getActionCommand().equals("progressionLog")) {
             openLog("Progression");
         } else if (e.getActionCommand().equals("addMilestone")) {
-            addMilestone();
+            addMilestoneDialogBox();
         } else if (e.getActionCommand().equals("milestoneLog")) {
             openLog("Milestone");
         } else if (e.getActionCommand().equals("chart")) {
@@ -212,10 +214,10 @@ public class HobbyListGUI extends JFrame implements ActionListener {
 
     //
     //
-    //
+    //todo: figure out this method
     private void makeChartFrame() {
         Hobby currentHobby = hobbyList.getByIndex(hobbyListPanel.getSelectedIndex());
-        currentHobby.makeChart();
+        CategoryDataset dataset = currentHobby.makeDataset();
     }
 
     //
@@ -254,8 +256,30 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         return formattedLog;
     }
 
-    private void addMilestone() {
-
+    private void addMilestoneDialogBox() {
+        JFrame newFrame = new JFrame("Add Milestone");
+        newFrame.setLayout(new GridLayout(4, 1, 10, 10));
+        Hobby currentHobby = hobbyList.getByIndex(hobbyListPanel.getSelectedIndex());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        newFrame.setSize(200, 300);
+        JPanel titlePanel = new JPanel(new FlowLayout());
+        JLabel titleLabel = new JLabel("Give a title: ");
+        JTextField titleField = new JTextField(10);
+        titlePanel.add(titleLabel);
+        titlePanel.add(titleField);
+        JLabel descriptionLabel = new JLabel("<html>Give a description<br/>for this Milestone: </html>");
+        JTextArea descriptionArea = new JTextArea();
+        JButton button = new JButton("Confirm this Milestone");
+        button.addActionListener(e -> {
+            currentHobby.addMilestone(new Milestone(titleField.getText(), descriptionArea.getText(),
+                    currentHobby.getTotalProgress()));
+            newFrame.dispose();
+        });
+        newFrame.add(titlePanel);
+        newFrame.add(descriptionLabel);
+        newFrame.add(descriptionArea);
+        newFrame.add(button);
+        newFrame.setVisible(true);
     }
 
     //
@@ -330,8 +354,8 @@ public class HobbyListGUI extends JFrame implements ActionListener {
                 saveHobbyList(dialogField.getText());
             } else if (operation == "Load") {
                 loadHobbyList(dialogField.getText());
-                updateHobbyListArea();
             }
+            updateHobbyListArea();
             revalidate();
             newFrame.dispose();
         });
@@ -413,9 +437,10 @@ public class HobbyListGUI extends JFrame implements ActionListener {
     //      click hobby on list then shows new buttons in middle
     //              - DONE open milestone log button
     //              - DONE open progress list log button
-    //              - open dialog box to add a milestone
+    //              - DONE open dialog box to add a milestone
     //              - DONE text field at bottom to add hours
-    //              - button to open a graph of hours and date
+    //              - button to open a graph of hours and date, make methods in GUI and hobby
+    //      After done check all potential clicking options for bugs
 }
 
 

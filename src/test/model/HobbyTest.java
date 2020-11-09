@@ -105,4 +105,9 @@ class HobbyTest {
         assertEquals(1,
                 jsonHobby.getJSONArray("progress list").getJSONObject(0).getInt("progressHour"));
     }
+
+    @Test
+    public void testMakeDataSet() {
+        fail();
+    }
 }
