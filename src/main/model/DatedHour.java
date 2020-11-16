@@ -1,5 +1,7 @@
 package model;
 
+import org.jfree.data.time.RegularTimePeriod;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,4 +46,10 @@ public class DatedHour {
         return progressHour;
     }
 
+    //
+    //
+    // EFFECTS: returns the date as a Date type
+    public Date returnDate() {
+        return date;
+    }
 }

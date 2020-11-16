@@ -2,6 +2,11 @@ package model;
 
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -131,17 +136,15 @@ public class Hobby implements Writable {
         this.progressList = progressList;
     }
 
-    //
-    //
+
     // EFFECTS: create a dataset of progress hours and dates
-    public CategoryDataset makeDataset() {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//        for (DatedHour entry : progressList) {
-//            dataset.addValue(entry.getProgressHour(), entry.getDate().);
-//            //todo: make a dataset with progress hours and time
-//            //      send back to GUI
-//            //      make plot in new frame
-//        }
+    public XYDataset makeDataset() {
+        TimeSeries series = new TimeSeries("progress");
+        for (DatedHour entry : progressList) {
+            series.addOrUpdate(new Day(entry.returnDate()), entry.getProgressHour());
+        }
+        TimeSeriesCollection dataset = new TimeSeriesCollection();
+        dataset.addSeries(series);
         return dataset;
     }
 }

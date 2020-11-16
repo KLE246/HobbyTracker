@@ -30,10 +30,13 @@ class DatedHourTest {
     }
 
     @Test
-    public void testGetDate() {
+    public void testGetReturnDate() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String expected = dateFormat.format(dateAtInstance);
         assertEquals(expected, datedHour.getDate());
+        Date date = datedHour.returnDate();
+        String expectedFromReturn = dateFormat.format(date);
+        assertEquals(expectedFromReturn, datedHour.getDate());
     }
 
     @Test

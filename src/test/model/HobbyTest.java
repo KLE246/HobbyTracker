@@ -1,9 +1,15 @@
 package model;
 
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYDataset;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -108,6 +114,18 @@ class HobbyTest {
 
     @Test
     public void testMakeDataSet() {
-        fail();
+        hobby = new Hobby("test");
+        hobby.addTime(1);
+        hobby.addTime(2);
+        XYDataset hobbyDataset = hobby.makeDataset();
+        assertEquals(1,hobbyDataset.getSeriesCount());
+        assertEquals(1,hobbyDataset.getItemCount(0));
+        try {
+            hobbyDataset.getItemCount(1);
+            fail("Should throw exception");
+        } catch (IllegalArgumentException e) {
+
+        }
+
     }
 }

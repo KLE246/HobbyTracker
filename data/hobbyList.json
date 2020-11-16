@@ -52,20 +52,20 @@
         {
             "progress list": [
                 {
-                    "date": "2020-10-27 12:17",
+                    "date": "2020-09-15 12:17",
                     "progressHour": 24
                 },
                 {
-                    "date": "2020-10-27 12:17",
+                    "date": "2020-10-11 12:17",
                     "progressHour": 43
                 },
                 {
-                    "date": "2020-10-27 12:58",
+                    "date": "2020-10-30 12:58",
                     "progressHour": 54
                 },
                 {
-                    "date": "2020-10-27 12:59",
-                    "progressHour": 387
+                    "date": "2020-11-07 12:59",
+                    "progressHour": 87
                 }
             ],
             "name": "Guitar",
@@ -81,13 +81,13 @@
                 {
                     "savedTime": {
                         "date": "2020-10-27 12:59",
-                        "progressHour": 387
+                        "progressHour": 87
                     },
                     "description": "asdfasdasdadfs asdfastestingndsaf",
                     "title": "another one"
                 }
             ],
-            "total progress": 387
+            "total progress": 87
         },
         {
             "progress list": [
@@ -102,6 +102,10 @@
                 {
                     "date": "2020-11-08 11:33",
                     "progressHour": 25
+                },
+                {
+                    "date": "2020-11-15 04:38",
+                    "progressHour": 29
                 }
             ],
             "name": "Sample",
@@ -123,7 +127,7 @@
                     "title": "second test"
                 }
             ],
-            "total progress": 25
+            "total progress": 29
         }
     ]
 }
