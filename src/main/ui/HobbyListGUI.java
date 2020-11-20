@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
-// Makes a GUI that can be used to navigate HobbyList
+// Makes a GUI that can be used to navigate a HobbyList
 
 public class HobbyListGUI extends JFrame implements ActionListener {
 
@@ -219,7 +219,7 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         XYPlot plot = (XYPlot) lineChart.getPlot();
 
         DateAxis dateAxis = new DateAxis();
-        dateAxis.setDateFormatOverride(new SimpleDateFormat("dd-MM-yyyy hh:mm"));
+        dateAxis.setDateFormatOverride(new SimpleDateFormat("dd-MM-yyyy"));
         plot.setDomainAxis(dateAxis);
 
         chartPanel.setPreferredSize(new Dimension(600, 400));
@@ -327,7 +327,6 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         newFrame.setSize(300, 100);
         newFrame.setLayout(new FlowLayout());
         JButton button = new JButton("Add Hobby");
-        // adding local button for new window
         button.addActionListener(e -> {
             hobbyList.addHobby(dialogField.getText());
             updateHobbyListArea();
@@ -340,6 +339,7 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         newFrame.setVisible(true);
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the current list to the set location
     private void saveLoadDialogBox(String operation) {
         hobbyListPanel.setListData(new String[0]);
@@ -350,7 +350,6 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         newFrame.setLayout(new FlowLayout());
         JButton button = new JButton(operation + " List");
         dialogField.setText(JSON_STORE);
-        // adding local button for new window
         button.addActionListener(e -> {
             if (operation.equals("Save")) {
                 saveHobbyList(dialogField.getText());
@@ -377,7 +376,6 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         newFrame.setSize(300, 100);
         newFrame.setLayout(new FlowLayout());
         JButton renameButton = new JButton("Rename List");
-        // adding local button for new window
         renameButton.addActionListener(e -> {
             hobbyList.setName(dialogField.getText());
             setHobbyListTitle();
@@ -391,7 +389,7 @@ public class HobbyListGUI extends JFrame implements ActionListener {
         newFrame.setVisible(true);
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, hobbyList
     // EFFECTS: loads hobbyList from file
     private void loadHobbyList(String location) {
         jsonWriter = new JsonWriter(location);

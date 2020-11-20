@@ -26,6 +26,14 @@
                 {
                     "date": "2020-10-27 12:59",
                     "progressHour": 123
+                },
+                {
+                    "date": "2020-11-17 12:05",
+                    "progressHour": 130
+                },
+                {
+                    "date": "2020-11-19 05:44",
+                    "progressHour": 141
                 }
             ],
             "name": "Code",
@@ -47,7 +55,7 @@
                     "title": "second"
                 }
             ],
-            "total progress": 123
+            "total progress": 141
         },
         {
             "progress list": [
@@ -66,6 +74,14 @@
                 {
                     "date": "2020-11-07 12:59",
                     "progressHour": 87
+                },
+                {
+                    "date": "2020-11-17 12:05",
+                    "progressHour": 90
+                },
+                {
+                    "date": "2020-11-19 05:43",
+                    "progressHour": 96
                 }
             ],
             "name": "Guitar",
@@ -87,7 +103,7 @@
                     "title": "another one"
                 }
             ],
-            "total progress": 87
+            "total progress": 96
         },
         {
             "progress list": [
@@ -106,6 +122,14 @@
                 {
                     "date": "2020-11-15 04:38",
                     "progressHour": 29
+                },
+                {
+                    "date": "2020-11-17 12:05",
+                    "progressHour": 32
+                },
+                {
+                    "date": "2020-11-19 05:43",
+                    "progressHour": 35
                 }
             ],
             "name": "Sample",
@@ -127,7 +151,7 @@
                     "title": "second test"
                 }
             ],
-            "total progress": 29
+            "total progress": 35
         }
     ]
 }
