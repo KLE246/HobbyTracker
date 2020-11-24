@@ -1,16 +1,11 @@
 package model;
 
 import exceptions.NegativeTimeException;
-import org.jfree.data.time.Day;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Time;
-import java.util.Calendar;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;

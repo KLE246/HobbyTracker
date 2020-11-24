@@ -43,10 +43,11 @@ Option
 checked exception.  You must have one test for the case where the exception is expected and another where the exception 
 is not expected.
 
-Originally addTime() in Hobby had REQUIRES: a positive time
+Originally addTime() in Hobby had REQUIRES: a positive time; addTime() is the only method in this class that has REQUIRES
 
 To make Hobby robust, addTime() was changed to throw an exception when negative numbers were inputted for the time. The
 exception gets caught in the addTime() method in HobbyListGUI and updates the message within the app to notify the user.
+
 ## Phase 4: Task 3
 Refactoring done on HobbyListGUI
 - A dialog box class could be made to make new pop up frames whenever a new one is instantiated. 
@@ -54,4 +55,7 @@ Refactoring done on HobbyListGUI
 - HobbyList panel would handle the revalidation functionality on update
 - The middle panel would be instantiated and removed on list selection as its own object instead of a panel in the frame
 - The left button panel could stay in the main class as it is just a set of buttons that aren't updated
+Milestone
+- potentially have a bi-directional relationship with Hobby
+- would no longer need a field for DatedHour
 
