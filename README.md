@@ -55,7 +55,8 @@ Refactoring done on HobbyListGUI
 - HobbyList panel would handle the revalidation functionality on update
 - The middle panel would be instantiated and removed on list selection as its own object instead of a panel in the frame
 - The left button panel could stay in the main class as it is just a set of buttons that aren't updated
-Milestone
+
+Refactoring Milestone
 - potentially have a bi-directional relationship with Hobby
 - would no longer need a field for DatedHour
 
