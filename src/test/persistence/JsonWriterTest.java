@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.NegativeTimeException;
 import model.DatedHour;
 import model.Hobby;
 import model.HobbyList;
@@ -64,7 +65,11 @@ class JsonWriterTest extends JsonTest {
             hobbyList.addHobby(codeHobby);
             hobbyList.addHobby(guitarHobby);
 
-            codeHobby.addTime(5);
+            try {
+                codeHobby.addTime(5);
+            } catch (NegativeTimeException e) {
+                fail();
+            }
             codeProgressList.add("5 hours as of " + new DatedHour(5).getDate());
             Milestone codeMilestone = new Milestone("App","new app",5);
             codeHobby.addMilestone(codeMilestone);
@@ -72,7 +77,11 @@ class JsonWriterTest extends JsonTest {
                     "submitted " + new DatedHour(5).getDate() + " after 5 hours of progress \n" +
                     "Description:\n" +
                     "new app" + "\n");
-            codeHobby.addTime(2);
+            try {
+                codeHobby.addTime(2);
+            } catch (NegativeTimeException e) {
+                fail();
+            }
             codeProgressList.add("7 hours as of " + new DatedHour(7).getDate());
 
             Milestone codeMilestoneTwo = new Milestone("Second","another app", 7);
@@ -82,7 +91,11 @@ class JsonWriterTest extends JsonTest {
                     "Description:\n" +
                     "another app" + "\n");
 
-            guitarHobby.addTime(8);
+            try {
+                guitarHobby.addTime(8);
+            } catch (NegativeTimeException e) {
+                fail();
+            }
             guitarProgressList.add("8 hours as of " + new DatedHour(8).getDate());
 
             Milestone guitarMilestoneOne = new Milestone("Song", "new song", 8);

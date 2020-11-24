@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.NegativeTimeException;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.time.Day;
@@ -33,11 +34,13 @@ public class Hobby implements Writable {
         this.milestoneList = new LinkedList<>();
     }
 
-    // REQUIRES: a positive time
     // MODIFIES: this
     // EFFECTS: adds the time towards the total hours in the hobby
     //          and adds an entry into progressList
-    public DatedHour addTime(int time) {
+    public DatedHour addTime(int time) throws NegativeTimeException {
+        if (time < 0) {
+            throw new NegativeTimeException();
+        }
         totalProgress = totalProgress + time;
         DatedHour datedHour = new DatedHour(totalProgress);
         progressList.add(datedHour);

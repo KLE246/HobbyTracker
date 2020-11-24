@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.NegativeTimeException;
 import model.DatedHour;
 import model.Hobby;
 import model.HobbyList;
@@ -176,7 +177,12 @@ public class HobbyTracker {
         Scanner timeGiven = new Scanner(System.in);
         int time = Integer.parseInt(timeGiven.nextLine());
 
-        DatedHour lastEntry = hobby.addTime(time);
+        DatedHour lastEntry = null;
+        try {
+            lastEntry = hobby.addTime(time);
+        } catch (NegativeTimeException e) {
+            e.printStackTrace();
+        }
 
         System.out.println(time + " hours added; Current progress of " + lastEntry.getProgressHour()
                 + " hours" + " updated to " + hobby.getName() + " progress at " + lastEntry.getDate());

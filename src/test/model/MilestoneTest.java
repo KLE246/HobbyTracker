@@ -18,7 +18,9 @@ class MilestoneTest {
     @BeforeEach
     public void setUp() {
         hobby = new Hobby("Test");
-        milestone = new Milestone("TestMilestone", "a description", 5);
+        milestone = new Milestone("TestMilestone");
+        milestone.setDescription("a description");
+
         hobby.addMilestone(milestone);
     }
 
@@ -53,6 +55,11 @@ class MilestoneTest {
             assertEquals(i, hour);
             assertEquals(expected, date);
         }
+    }
+
+    @Test
+    public void testSetTimeThrownException() {
+
     }
 
     @Test

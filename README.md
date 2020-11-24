@@ -36,3 +36,22 @@ review much  more appealing.
 - As a user, I want to be able to save my hobby list and all information contained in each hobby
 - As a user, I want to be able to reopen my saved file to continually update my hobby information
 
+## Phase 4: Task 2
+
+Option
+- Test and design a class in your model package that is robust.  You must have at least one method that throws a 
+checked exception.  You must have one test for the case where the exception is expected and another where the exception 
+is not expected.
+
+Originally addTime() in Hobby had REQUIRES: a positive time
+
+To make Hobby robust, addTime() was changed to throw an exception when negative numbers were inputted for the time. The
+exception gets caught in the addTime() method in HobbyListGUI and updates the message within the app to notify the user.
+## Phase 4: Task 3
+Refactoring done on HobbyListGUI
+- A dialog box class could be made to make new pop up frames whenever a new one is instantiated. 
+- 2 panels in the main frame can be their own class
+- HobbyList panel would handle the revalidation functionality on update
+- The middle panel would be instantiated and removed on list selection as its own object instead of a panel in the frame
+- The left button panel could stay in the main class as it is just a set of buttons that aren't updated
+

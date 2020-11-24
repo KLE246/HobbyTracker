@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.NegativeTimeException;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -33,11 +34,26 @@ class HobbyTest {
     public void testAddTime() {
         int progressInRun = 0;
         for (int i = 0; i < 6; i++) {
-            DatedHour lastEntry = hobby.addTime(i);
+            DatedHour lastEntry = null;
+            try {
+                lastEntry = hobby.addTime(i);
+            } catch (NegativeTimeException e) {
+                fail();
+            }
             progressInRun += i;
             assertEquals(progressInRun, hobby.getTotalProgress());
             assertEquals(i + 1, hobby.getProgressList().size());
             assertEquals(hobby.getProgressList().get(i),lastEntry);
+        }
+    }
+
+    @Test
+    public void testAddNegativeTime() {
+        try {
+            hobby.addTime(-5);
+            fail();
+        } catch (NegativeTimeException e) {
+
         }
     }
 
@@ -60,7 +76,11 @@ class HobbyTest {
         log = hobby.getLog();
         assertEquals(0,log.size());
         for (int i = 0; i < 6; i++) {
-            hobby.addTime(i);
+            try {
+                hobby.addTime(i);
+            } catch (NegativeTimeException e) {
+                fail();
+            }
         }
         log = hobby.getLog();
         assertEquals(6, log.size());
@@ -101,7 +121,11 @@ class HobbyTest {
     public void testToJson() {
         hobby = new Hobby("test");
         DatedHour datedHour = new DatedHour(1);
-        hobby.addTime(1);
+        try {
+            hobby.addTime(1);
+        } catch (NegativeTimeException e) {
+            fail();
+        }
         hobby.addMilestone(new Milestone("sample", "example", datedHour));
         JSONObject jsonHobby = hobby.toJson();
         assertEquals("Test", jsonHobby.getString("name"));
@@ -115,8 +139,13 @@ class HobbyTest {
     @Test
     public void testMakeDataSet() {
         hobby = new Hobby("test");
-        hobby.addTime(1);
-        hobby.addTime(2);
+        try {
+            hobby.addTime(1);
+            hobby.addTime(2);
+        } catch (NegativeTimeException e) {
+            fail();
+        }
+
         XYDataset hobbyDataset = hobby.makeDataset();
         assertEquals(1,hobbyDataset.getSeriesCount());
         assertEquals(1,hobbyDataset.getItemCount(0));

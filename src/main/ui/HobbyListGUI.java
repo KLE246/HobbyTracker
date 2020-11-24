@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.NegativeTimeException;
 import model.Hobby;
 import model.HobbyList;
 import model.Milestone;
@@ -311,6 +312,8 @@ public class HobbyListGUI extends JFrame implements ActionListener {
             hourMessages.setText(hoursToAddField.getText() + " hours added to "
                     + currentHobby.getName());
             hoursToAddField.setText("");
+        } catch (NegativeTimeException e) {
+            hourMessages.setText("You progressed backwards?");
         } catch (NumberFormatException exception) {
             hourMessages.setText("that is not a number");
         } catch (IndexOutOfBoundsException exception) {
